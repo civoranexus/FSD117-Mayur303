@@ -12,3 +12,11 @@ export const generateQR = (data, token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+  export const verifyQR = (data, token) =>
+  API.post("/scan/verify", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
