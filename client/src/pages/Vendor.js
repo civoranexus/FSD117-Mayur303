@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { generateQR } from "../services/api";
 import Layout from "../components/Layout";
+import AuthNavbar from "../components/AuthNavbar";
+
 
 function Vendor() {
   const [productName, setProductName] = useState("");
@@ -16,6 +18,16 @@ function Vendor() {
       alert("QR generation failed");
     }
   };
+
+  return (
+  <>
+    <AuthNavbar />
+    <Layout>
+      {/* existing vendor card */}
+    </Layout>
+  </>
+);
+
 
   return (
     <Layout>

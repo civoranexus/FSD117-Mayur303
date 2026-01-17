@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { verifyQR } from "../services/api";
 import Layout from "../components/Layout";
+import AuthNavbar from "../components/AuthNavbar";
+
 
 function Verifier() {
   const [qrToken, setQrToken] = useState("");
@@ -22,6 +24,16 @@ function Verifier() {
     if (result.status === "USED") return styles.used;
     return styles.invalid;
   };
+
+  return (
+  <>
+    <AuthNavbar />
+    <Layout>
+      {/* existing verifier card */}
+    </Layout>
+  </>
+);
+
 
   return (
     <Layout>

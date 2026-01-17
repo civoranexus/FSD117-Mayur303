@@ -1,30 +1,36 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Login() {
+function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("vendor");
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { email, password }
-      );
+      await axios.post("http://localhost:5000/api/auth/register", {
+        name,
+        email,
+        password,
+        role,
+      });
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.role);
-
-      window.location.reload();
+      alert("Registration successful! Please login.");
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      alert(err.response?.data?.message || "Registration failed");
     }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h2>Login</h2>
+        <h2>Create Account</h2>
+
+        <input
+          placeholder="Full Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
         <input
           placeholder="Email"
@@ -37,7 +43,12 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={handleLogin}>Login</button>
+        <select onChange={(e) => setRole(e.target.value)}>
+          <option value="vendor">Vendor</option>
+          <option value="verifier">Verifier</option>
+        </select>
+
+        <button onClick={handleRegister}>Register</button>
       </div>
     </div>
   );
@@ -61,6 +72,5 @@ const styles = {
   },
 };
 
-export default Login;
-
+export default Register;
 
