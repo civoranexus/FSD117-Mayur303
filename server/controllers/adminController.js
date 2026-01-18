@@ -1,6 +1,7 @@
 const User = require("../models/User");
+const QRCode = require("../models/QRCode");
 
-exports.getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
     res.json(users);
@@ -9,27 +10,17 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-const QRCode = require("../models/QRCode");
-
-exports.getAllQRCodes = async (req, res) => {
+const getAllQRCodes = async (req, res) => {
   try {
-    const qrs = await QRCode.find().populate("createdBy", "email role");
+    const qrs = await QRCode.find().populate("vendor", "name email");
     res.json(qrs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const ScanLog = require("../models/ScanLog");
-
-exports.getScanLogs = async (req, res) => {
-  try {
-    const logs = await ScanLog.find()
-      .populate("qrCode")
-      .populate("scannedBy", "email role");
-
-    res.json(logs);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+module.exports = {
+  getAllUsers,
+  getAllQRCodes,
 };
+

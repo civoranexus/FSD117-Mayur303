@@ -1,15 +1,10 @@
 const express = require("express");
-const protect = require("../middleware/authMiddleware");
-const authorizeRoles = require("../middleware/roleMiddleware");
-const { generateQRCode } = require("../controllers/qrController");
-
 const router = express.Router();
 
-router.post(
-  "/generate",
-  protect,
-  authorizeRoles("vendor", "admin"),
-  generateQRCode
-);
+// TEMPORARY TEST HANDLER (to stop crash)
+router.post("/generate", (req, res) => {
+  res.json({ message: "QR generate route working" });
+});
 
 module.exports = router;
+
