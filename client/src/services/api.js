@@ -20,3 +20,5 @@ export const generateQR = (data, token) =>
     },
   });
 
+export const registerUser = (data) =>
+  axios.post("http://localhost:5000/api/auth/register", data);

@@ -48,6 +48,16 @@ function Login() {
         />
 
         <button onClick={handleLogin}>Login</button>
+        <p style={{ textAlign: "center" }}>
+  Don’t have an account?{" "}
+  <span
+    style={styles.link}
+    onClick={() => navigate("/register")}
+  >
+    Register
+  </span>
+</p>
+
       </div>
     </div>
   );
@@ -70,6 +80,12 @@ const styles = {
     gap: "12px",
     boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
   },
+  link: {
+  color: "#2563eb",
+  cursor: "pointer",
+  fontWeight: "500",
+},
+
 };
 
 export default Login;

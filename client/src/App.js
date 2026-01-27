@@ -2,7 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Vendor from "./pages/Vendor";
 import Verifier from "./pages/Verifier";
-// import Admin from "./pages/Admin";
+import Register from "./pages/Register";
+import Admin from "./pages/Admin";
+
+
 
 const isLoggedIn = () => {
   return localStorage.getItem("token");
@@ -27,13 +30,22 @@ function App() {
           element={isLoggedIn() ? <Verifier /> : <Navigate to="/login" />}
         />
 
-        {/* Admin Route */}
-        {/*
-        <Route
-          path="/admin"
-          element={isLoggedIn() ? <Admin /> : <Navigate to="/login" />}
-        />
-        */}
+        {/* register Route */}
+        {
+         <Route path="/register" element={<Register />} />
+
+        }
+
+        {/* admin route */}
+        {
+          <Route
+  path="/admin"
+  element={
+    localStorage.getItem("token") ? <Admin /> : <Navigate to="/login" />
+  }
+/>
+
+        }
 
         {/* Default Redirect */}
         <Route path="*" element={<Navigate to="/login" />} />
